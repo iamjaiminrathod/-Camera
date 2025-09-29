@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Camera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white overflow-hidden">
+
+    <!-- Main container for the camera view and controls -->
+    <div id="camera-app" class="relative w-screen h-screen flex flex-col justify-between">
+        
+        <video id="video" playsinline autoplay></video>
+        <canvas id="canvas" class="hidden"></canvas>
+
+        <div id="recording-timer" class="hidden z-20">
+             <span class="red-dot"></span>
+             <span id="timer-display">00:00</span>
+        </div>
+
+        <!-- Top Controls -->
+        <div class="flex justify-between items-center p-4 pt-8 z-10 text-white">
+            <div class="p-2 rounded-full bg-black/30">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+             <div id="camera-indicator" class="p-2 px-3 rounded-full bg-black/30 text-xs font-bold tracking-wider">
+                BACK
+            </div>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="flex flex-col items-center z-10 w-full pb-8">
+            <!-- Camera Mode Selector -->
+            <div id="mode-selector" class="camera-modes w-full overflow-x-auto whitespace-nowrap text-center mb-4">
+                <span class="mode-item text-gray-400 font-semibold px-3 text-sm tracking-wider" data-mode="pano">PANO</span>
+                <span class="mode-item text-gray-400 font-semibold px-3 text-sm tracking-wider" data-mode="portrait">PORTRAIT</span>
+                <span class="mode-item text-yellow-400 font-semibold px-3 text-sm tracking-wider" data-mode="photo">PHOTO</span>
+                <span class="mode-item text-gray-400 font-semibold px-3 text-sm tracking-wider" data-mode="video">VIDEO</span>
+                <span class="mode-item text-gray-400 font-semibold px-3 text-sm tracking-wider" data-mode="slo-mo">SLO-MO</span>
+            </div>
+            
+            <!-- Shutter and utility buttons -->
+            <div class="flex justify-around items-center w-full px-4">
+                <!-- Gallery Preview -->
+                <a id="gallery-link" href="#" class="w-16 h-16 flex items-center justify-center">
+                    <img id="photo-preview" class="w-12 h-12 rounded-lg object-cover border-2 border-white/50" src="https://placehold.co/96x96/111111/111111?text=." alt="Last taken media">
+                    <video id="video-preview" class="w-12 h-12 rounded-lg object-cover border-2 border-white/50 hidden" playsinline muted loop></video>
+                </a>
+                
+                <button id="shutter-button" class="shutter-button shutter-button-photo"></button>
+
+                <button id="switch-camera-button" class="w-16 h-16 flex items-center justify-center">
+                    <div class="w-12 h-12 rounded-full bg-gray-800/80 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4"/>
+                            <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
